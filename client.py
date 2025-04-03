@@ -42,7 +42,5 @@ receive_thread.start()
 
 write_thread = threading.Thread(target=write_messages, daemon=True)
 write_thread.start()
-
-# Keep main thread alive
 receive_thread.join()
 write_thread.join()
