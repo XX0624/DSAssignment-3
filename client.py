@@ -28,12 +28,15 @@ def receive_messages():
 
 
 def write_messages():
-    """
-    Continuously read user input and send to the server.
-    """
     while True:
         message = input("")
-        client.send(message.encode("utf-8"))
+        if message.strip() == "/quit":
+            client.send(message.encode("utf-8"))
+            print("Disconnecting from the chat...")
+            client.close()
+            break
+        else:
+            client.send(message.encode("utf-8"))
 
 
 # Start two threads: one for receiving and one for sending
